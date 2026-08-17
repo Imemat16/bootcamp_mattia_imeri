@@ -1,0 +1,1 @@
+This repository is a practice exercise for setting up a Python project structure, managing environments, and keeping API keys secure.
