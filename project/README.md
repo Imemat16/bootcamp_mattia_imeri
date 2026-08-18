@@ -18,3 +18,8 @@
 * **Structure:** Raw, immutable data is stored in `data/raw/`. Cleaned, analytical data is stored in `data/processed/`.
 * **Formats:** We use CSV for human-readable raw ingestion, and Parquet for processed data to preserve strict numeric dtypes and columnar compression.
 * **Routing:** All I/O operations utilize `os.getenv()` to pull `DATA_DIR_RAW` and `DATA_DIR_PROCESSED` from the local environment variables.
+
+## Preprocessing & Cleaning Strategy
+* **Imputation**: Numeric missing values are handled via median imputation to prevent severe outliers from heavily distorting the distribution.
+* **Deletion**: Missing categorical attributes are systematically dropped. It is assumed that interpolating structural text attributes introduces unacceptable synthetic bias.
+* **Scaling**: Continuous numeric features are transformed via Min-Max normalization to standard ranges, assuming downstream models require scale-agnostic feature balancing.
